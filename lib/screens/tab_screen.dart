@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:sport1/screens/more_screen.dart';
 import 'package:sport1/screens/scores_screen.dart';
 import 'package:sport1/screens/vod_screen.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
 import '../widgets/header.dart';
 import 'broadcast_screen.dart';
 import 'home_screen.dart';
@@ -16,29 +18,13 @@ class TabsScreen extends StatefulWidget {
 class _TabsScreenState extends State<TabsScreen> {
   int _selectedIndex = 0;
 
-//  PageController _pageController;
-
   // List<Widget> tabPages = [ FUTURE USE FOR WIDGETS :
   // https://stackoverflow.com/questions/45235570/how-to-use-bottomnavigationbar-with-navigator
 
-  //   Screen1(),
-  //   Screen2(),
-  //   Screen3(),
-  // ];
-  //  @override
-  // void initState(){
-  //   super.initState();
-  //   _pageController = PageController(initialPage: _pageIndex);
-  // }
-
-  // @override
-  // void dispose() {
-  //   _pageController.dispose();
-  //   super.dispose();
-  // }
-
   @override
   Widget build(BuildContext context) {
+    final String scores = 'assets/svg/scores.svg';
+    final Widget svg = SvgPicture.asset(scores, semanticsLabel: 'Acme Logo');
     const List<Widget> _pages = <Widget>[
       //list of icons future be pages
       MoreScreen(),
@@ -103,6 +89,12 @@ class _TabsScreenState extends State<TabsScreen> {
               icon: Icon(Icons.home, color: Colors.grey),
               label: 'Home',
             ),
+            // BottomNavigationBarItem( TODO SVGS!!!!!
+            //   activeIcon:
+            //       Icon(Icons.home, color: Color.fromRGBO(2, 247, 132, 1)),
+            //   icon: SvgPicture.asset(scores),
+            //   label: "Browse",
+            // ),
           ], // this will be set when a new tab is tapped
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,

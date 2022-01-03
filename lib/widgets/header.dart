@@ -12,15 +12,20 @@ AppBar header(context) {
     title: Image.asset('assets/images/sport1small.png',
         fit: BoxFit.fill, width: 85.0, height: 23.0),
     actions: <Widget>[
-      IconButton(
-        icon: const Icon(
-          Icons.arrow_forward_ios,
-          color: Colors.white,
-        ),
-        onPressed: () {
-          print('Click back!');
-        },
-      ),
+      Navigator.canPop(context) //show only if i can pop back (navigation)
+          ? IconButton(
+              icon: const Icon(
+                Icons.arrow_forward_ios,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                if (Navigator.canPop(context)) {
+                  //
+                  Navigator.pop(context);
+                }
+              },
+            )
+          : const SizedBox.shrink(),
     ],
   );
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sport1/widgets/more_list.dart';
+import 'package:sport1/widgets/search_bar.dart';
 
 class MoreScreen extends StatelessWidget {
   const MoreScreen({Key? key}) : super(key: key);
@@ -10,8 +11,16 @@ class MoreScreen extends StatelessWidget {
     return Scaffold(
         body: Column(
       children: [
-        // SearchBar(), TODO
+        Container(height: 60, child: SearchBar()),
         MoreList(),
+        Expanded(
+          child: Align(
+              alignment: FractionalOffset.bottomCenter,
+              child: Container(
+                  color: Colors.grey.shade200,
+                  height: 80,
+                  child: Image.asset('assets/images/bymoveo.png'))),
+        ),
       ],
     ));
   }

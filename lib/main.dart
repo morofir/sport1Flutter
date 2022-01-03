@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sport1/screens/home_screen.dart';
-
+import 'package:sport1/screens/inside_screen.dart';
 import 'package:sport1/screens/tab_screen.dart';
-import 'package:sport1/providers/categories_provider.dart';
+import 'package:sport1/screens/vod_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -27,6 +27,8 @@ class MyApp extends StatelessWidget {
         home: const TabsScreen(),
         routes: {
           HomeScreen.routeName: (ctx) => const HomeScreen(),
+          VodScreen.routeName: (ctx) => const VodScreen(),
+          InsideScreen.routeName: (ctx) => const InsideScreen(),
         },
       ),
     );
