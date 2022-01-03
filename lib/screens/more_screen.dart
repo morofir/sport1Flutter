@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sport1/widgets/more_list.dart';
 
 class MoreScreen extends StatelessWidget {
   const MoreScreen({Key? key}) : super(key: key);
@@ -7,10 +8,11 @@ class MoreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("more"),
-      ),
-      body: const Text("more"),
-    );
+        body: Column(
+      children: [
+        // SearchBar(), TODO
+        MoreList(),
+      ],
+    ));
   }
 }

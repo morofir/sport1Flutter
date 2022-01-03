@@ -3,7 +3,24 @@ import 'package:flutter/material.dart';
 AppBar header(context) {
   return AppBar(
     backgroundColor: Colors.black,
+    leading: IconButton(
+      icon: Image.asset('assets/images/group3.png'),
+      onPressed: () {
+        print('clear his');
+      },
+    ),
     title: Image.asset('assets/images/sport1small.png',
-        fit: BoxFit.fill, width: 80.0, height: 80.0),
+        fit: BoxFit.fill, width: 85.0, height: 23.0),
+    actions: <Widget>[
+      IconButton(
+        icon: const Icon(
+          Icons.arrow_forward_ios,
+          color: Colors.white,
+        ),
+        onPressed: () {
+          print('Click back!');
+        },
+      ),
+    ],
   );
 }

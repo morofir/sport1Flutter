@@ -1,16 +1,28 @@
-import 'package:flutter/foundation.dart';
 import 'child_category.dart';
 
-class CategoryData with ChangeNotifier {
+class Categories {
   final String title;
-  final num id;
-  final bool is_parent_category;
-  final ChildData children;
+  final String id;
+  final bool isParentCategory;
+  final List<Children>? children;
 
-  CategoryData({
-    required this.title,
-    required this.id,
-    required this.is_parent_category,
-    required this.children,
-  });
+  String get getTitle => title;
+
+  Categories(
+      {required this.title,
+      required this.id,
+      required this.isParentCategory,
+      this.children});
+
+  factory Categories.fromJson(Map<String, dynamic> json) {
+    return Categories(
+        title: json['title'],
+        id: json['id'],
+        isParentCategory: json['is_parent_category'],
+        children: json['children'].length > 0 //if child exists
+            ? json['children']
+                .map<Children>((json) => Children.fromJson(json))
+                .toList()
+            : null);
+  }
 }

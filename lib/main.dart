@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       //optional value without context, then value:...
       create: (_) => null,
-      // create: (ctx) => Categories(), //instance of a categories provider
+      // create: (ctx) => CategoriesProvider(), //instance of a categories provider
       //the listeners will build the app of something changes
       child: MaterialApp(
         title: 'MyShop',
