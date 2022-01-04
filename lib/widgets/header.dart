@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
+import 'package:shared_preferences/shared_preferences.dart';
 
 AppBar header(context) {
   return AppBar(
     backgroundColor: Colors.black,
     leading: IconButton(
       icon: Image.asset('assets/images/group3.png'),
-      onPressed: () {
-        print('clear his');
+      onPressed: () async {
+        print('clear SharedPreferences');
+        SharedPreferences preferences = await SharedPreferences.getInstance();
+        await preferences.clear();
       },
     ),
     title: Image.asset('assets/images/sport1small.png',
@@ -20,7 +24,6 @@ AppBar header(context) {
               ),
               onPressed: () {
                 if (Navigator.canPop(context)) {
-                  //
                   Navigator.pop(context);
                 }
               },

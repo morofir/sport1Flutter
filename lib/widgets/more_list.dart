@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:sport1/main.dart';
 import 'package:sport1/models/category.dart';
+import 'package:sport1/providers/categories_provider.dart';
+import 'package:sport1/screens/tab_screen.dart';
 import 'package:sport1/services/categories_network_service.dart';
+import 'package:provider/provider.dart';
 
 class MoreList extends StatefulWidget {
   @override
@@ -11,26 +13,44 @@ class MoreList extends StatefulWidget {
 class _MoreListState extends State<MoreList> {
   final CategoriesNetworkService categoriesService = CategoriesNetworkService();
   late Future<List<Categories>> futureData;
+  List<Categories> myList = [];
+
+  void initList() async {
+    myList = await CategoriesProvider().fetchCategories();
+
+    for (Categories item in myList) {
+      Provider.of<CategoriesProvider>(context).addCategory(
+          item.title, item.id, item.isParentCategory, item.children);
+    }
+  }
+
+  void printCategories() {
+    for (Categories item in myList) {
+      print(item.title);
+    }
+  }
 
   @override
   void initState() {
     super.initState();
-    futureData = categoriesService.fetchCategories();
+    futureData = Provider.of<CategoriesProvider>(context, listen: false)
+        .fetchCategories();
   }
 
   @override
   Widget build(BuildContext context) {
+    initList();
     return SizedBox(
       height: 500,
       child: Scaffold(
         body: Center(
           child: RefreshIndicator(
-            //pull to refreshe
+            //pull to refresh
             onRefresh: () {
               Navigator.pushReplacement(
                 context,
                 PageRouteBuilder(
-                    pageBuilder: (a, b, c) => MyApp(),
+                    pageBuilder: (a, b, c) => const TabsScreen(),
                     transitionDuration: const Duration(seconds: 0)),
               );
               return Future.value(false);
