@@ -31,7 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   provider: ^6.0.1
-  flutter_svg: ^1.0.0
+  flutter_onboarding_screen: ^2.0.2
 
   
 
@@ -72,6 +72,9 @@ flutter:
     - assets/images/sport1small.png
     - assets/images/group3.png 
     - assets/images/bymoveo.png
+    - assets/images/caro1.png
+    - assets/images/caro2.png
+    - assets/images/caro3.png
     - assets/svg/scores.svg
     - assets/svg/vod.svg
     - assets/svg/broadcasts.svg

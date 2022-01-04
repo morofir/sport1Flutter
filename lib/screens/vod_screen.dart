@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sport1/screens/inside_screen.dart';
+import 'package:sport1/screens/onboarding_screen.dart';
 
 class VodScreen extends StatelessWidget {
   const VodScreen({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class VodScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (ctx) => const InsideScreen(),
+                  builder: (ctx) => OnbordingScreen(),
                 ));
               },
               child: const Text('Inside Screen'),

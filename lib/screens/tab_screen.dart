@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sport1/screens/more_screen.dart';
+import 'package:sport1/screens/onboarding_screen.dart';
 import 'package:sport1/screens/scores_screen.dart';
 import 'package:sport1/screens/vod_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -23,7 +24,7 @@ class _TabsScreenState extends State<TabsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final String scores = 'assets/svg/scores.svg';
+    const String scores = 'assets/svg/scores.svg';
     final Widget svg = SvgPicture.asset(scores, semanticsLabel: 'Acme Logo');
     const List<Widget> _pages = <Widget>[
       //list of icons future be pages
