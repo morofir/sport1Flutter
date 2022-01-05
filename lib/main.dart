@@ -53,7 +53,9 @@ class MyApp extends StatelessWidget {
           secondaryHeaderColor: Colors.black,
           primarySwatch: Colors.grey,
         ),
-        home: initScreen != 1 ? AuthWrapper() : OnbordingScreen(),
+        home: initScreen == 1
+            ? AuthWrapper()
+            : OnbordingScreen(), //if user saw go to authWrapper
         routes: {
           HomeScreen.routeName: (ctx) => const HomeScreen(),
           VodScreen.routeName: (ctx) => const VodScreen(),
@@ -75,9 +77,13 @@ class AuthWrapper extends StatelessWidget {
     if (firebaseUser != null) {
       print('login success: ' + firebaseUser.toString());
       return TabsScreen();
+      // Navigator.pushReplacement(
+      //     context, MaterialPageRoute(builder: (context) => const TabsScreen()));
     } else {
       print('logged out');
       return LoginScreen();
+      // Navigator.pushReplacement(
+      //     context, MaterialPageRoute(builder: (context) => LoginScreen()));
     }
   }
 }

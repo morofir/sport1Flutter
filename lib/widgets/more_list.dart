@@ -19,7 +19,7 @@ class _MoreListState extends State<MoreList> {
     myList = await CategoriesProvider().fetchCategories();
 
     for (Categories item in myList) {
-      Provider.of<CategoriesProvider>(context).addCategory(
+      Provider.of<CategoriesProvider>(context, listen: false).addCategory(
           item.title, item.id, item.isParentCategory, item.children);
     }
   }

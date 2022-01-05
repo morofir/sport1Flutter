@@ -1,9 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/src/provider.dart';
-import 'package:sport1/screens/login/login_screen.dart';
 import 'package:sport1/screens/more_screen.dart';
-import 'package:sport1/screens/onboarding_screen.dart';
 import 'package:sport1/screens/scores_screen.dart';
 import 'package:sport1/screens/vod_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -28,19 +24,16 @@ class _TabsScreenState extends State<TabsScreen> {
   @override
   void initState() {
     super.initState();
-
   }
 
   @override
   Widget build(BuildContext context) {
-    const String scores = 'assets/svg/scores.svg';
-    final Widget svg = SvgPicture.asset(scores, semanticsLabel: 'Acme Logo');
     const List<Widget> _pages = <Widget>[
       //list of icons future be pages
       MoreScreen(),
-      ScoreScreen(),
-      VodScreen(),
       BroadScreen(),
+      VodScreen(),
+      ScoreScreen(),
       HomeScreen(),
     ];
     void _onItemTapped(int index) {
@@ -67,44 +60,51 @@ class _TabsScreenState extends State<TabsScreen> {
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           unselectedItemColor: Colors.white,
+          selectedIconTheme:
+              IconThemeData(color: Color.fromRGBO(2, 247, 132, 1)),
 
-          items: const [
-            BottomNavigationBarItem(
+          items: <BottomNavigationBarItem>[
+            const BottomNavigationBarItem(
               activeIcon:
                   Icon(Icons.menu, color: Color.fromRGBO(2, 247, 132, 1)),
               icon: Icon(Icons.menu, color: Colors.grey),
-              label: 'More',
+              label: 'עוד',
             ),
             BottomNavigationBarItem(
-              activeIcon: Icon(Icons.calendar_today_sharp,
-                  color: Color.fromRGBO(2, 247, 132, 1)),
-              icon: Icon(Icons.calendar_today_sharp, color: Colors.grey),
-              label: 'Scores',
+              icon: SvgPicture.asset('assets/svg/broadcasts.svg',
+                  width: 18.0,
+                  height: 18.0,
+                  color: _selectedIndex == 1
+                      ? const Color.fromRGBO(2, 247, 132, 1)
+                      : Colors.grey),
+              label: 'שידורים',
             ),
             BottomNavigationBarItem(
-              activeIcon: Icon(Icons.play_circle_fill,
-                  color: Color.fromRGBO(2, 247, 132, 1)),
-              icon: Icon(Icons.play_circle_fill, color: Colors.grey),
-              label: 'Vod',
+              icon: SvgPicture.asset('assets/svg/vod1.svg',
+                  height: 15.0,
+                  width: 16.0,
+                  allowDrawingOutsideViewBox: true,
+                  color: _selectedIndex == 2
+                      ? const Color.fromRGBO(2, 247, 132, 1)
+                      : Colors.white),
+              label: 'VOD',
             ),
             BottomNavigationBarItem(
-              activeIcon: Icon(Icons.score_rounded,
-                  color: Color.fromRGBO(2, 247, 132, 1)),
-              icon: Icon(Icons.score_rounded, color: Colors.grey),
-              label: 'Broadcast',
+              icon: SvgPicture.asset('assets/svg/scores.svg',
+                  width: 16.0,
+                  height: 16.0,
+                  allowDrawingOutsideViewBox: true,
+                  color: _selectedIndex == 3
+                      ? const Color.fromRGBO(2, 247, 132, 1)
+                      : Colors.grey),
+              label: 'תוצאות',
             ),
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
               activeIcon:
                   Icon(Icons.home, color: Color.fromRGBO(2, 247, 132, 1)),
               icon: Icon(Icons.home, color: Colors.grey),
-              label: 'Home',
+              label: 'בית',
             ),
-            // BottomNavigationBarItem( TODO SVGS!!!!!
-            //   activeIcon:
-            //       Icon(Icons.home, color: Color.fromRGBO(2, 247, 132, 1)),
-            //   icon: SvgPicture.asset(scores),
-            //   label: "Browse",
-            // ),
           ], // this will be set when a new tab is tapped
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,

@@ -27,15 +27,6 @@ class VodScreen extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()),
-                );
-              },
-              child: const Text('login Screen'),
-            ),
-            ElevatedButton(
-              onPressed: () {
                 context.read<AuthService>().signOut();
               },
               child: const Text('Log Out'),
