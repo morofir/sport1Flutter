@@ -17,12 +17,13 @@ int? initScreen; //false
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences pref = await SharedPreferences.getInstance();
-  initScreen = await pref.getInt('initScreen');
+  initScreen = pref.getInt('initScreen');
   await pref.setInt('initScreen', 1); //1-true if loaded the application already
+  print(initScreen);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -32,16 +33,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     //provider cleans old data automatically
     return MultiProvider(
-      //2 providers auth,categories
+      //2 providers of auth,one for categories
       providers: [
         Provider<AuthService>(
-          create: (_) => AuthService(firebaseAuth: FirebaseAuth.instance),
+          create: (_) => AuthService(FirebaseAuth.instance),
         ),
         StreamProvider(
           create: (context) => context.read<AuthService>().authStateChanges,
-          initialData: 0,
+          initialData: null,
         ),
-        Provider<CategoriesProvider>(create: (_) => CategoriesProvider()),
+        ListenableProvider<CategoriesProvider>(
+            create: (_) => CategoriesProvider()),
       ],
       child: MaterialApp(
         title: 'MyShop',
@@ -51,7 +53,7 @@ class MyApp extends StatelessWidget {
           secondaryHeaderColor: Colors.black,
           primarySwatch: Colors.grey,
         ),
-        home: initScreen == 1 ? AuthWrapper() : OnbordingScreen(),
+        home: initScreen != 1 ? AuthWrapper() : OnbordingScreen(),
         routes: {
           HomeScreen.routeName: (ctx) => const HomeScreen(),
           VodScreen.routeName: (ctx) => const VodScreen(),
@@ -67,10 +69,14 @@ class AuthWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final firebaseUser = context.watch<User>();
+    final firebaseUser = context.watch<User?>();
+    print('user: ' + firebaseUser.toString());
+
     if (firebaseUser != null) {
+      print('login success: ' + firebaseUser.toString());
       return TabsScreen();
     } else {
+      print('logged out');
       return LoginScreen();
     }
   }

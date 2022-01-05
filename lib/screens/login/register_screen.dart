@@ -9,14 +9,14 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  bool isLoading = false;
+
   final _authFirebase = FirebaseAuth.instance;
   bool _obscureText = true;
   late TextEditingController _userEmail;
   late TextEditingController _userPassword;
   final _formPageKey = GlobalKey<FormState>();
   final _pageKey = GlobalKey<ScaffoldState>();
-
-  bool isLoading = false;
 
   @override
   void initState() {
@@ -64,13 +64,20 @@ class _RegisterPageState extends State<RegisterPage> {
               child: Stack(
                 children: <Widget>[
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Expanded(
-                          flex: 3,
+                        Container(
+                          margin: const EdgeInsets.symmetric(vertical: 40),
+                          height: 40,
+                          width: 100,
+                          color: Colors.black,
+                          child: Image.asset('assets/images/sport1small.png'),
+                        ),
+                        const Expanded(
+                          flex: 2,
                           child: SizedBox(),
                         ),
                         Text(
@@ -112,18 +119,18 @@ class _RegisterPageState extends State<RegisterPage> {
         Navigator.pop(context);
       },
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Row(
           children: <Widget>[
             Container(
-              padding: EdgeInsets.only(left: 0, top: 10, bottom: 10),
-              child: Icon(Icons.keyboard_arrow_left, color: Colors.white),
+              padding: const EdgeInsets.only(left: 0, top: 10, bottom: 10),
+              child: const Icon(Icons.keyboard_arrow_left, color: Colors.black),
             ),
             const Text('Back',
                 style: TextStyle(
-                    fontSize: 12,
+                    fontSize: 18,
                     fontWeight: FontWeight.w500,
-                    color: Colors.white))
+                    color: Colors.black))
           ],
         ),
       ),
@@ -139,7 +146,8 @@ class _RegisterPageState extends State<RegisterPage> {
           });
           try {
             final newUser = await _authFirebase.createUserWithEmailAndPassword(
-                email: _userEmail.text, password: _userPassword.text);
+                email: _userEmail.text.trim(),
+                password: _userPassword.text.trim());
             if (newUser != null) {
               Navigator.push(
                 context,
@@ -148,26 +156,25 @@ class _RegisterPageState extends State<RegisterPage> {
             }
           } catch (e) {
             setState(() => isLoading = false);
-            // Commons.showError(context, e.message);
             _pageKey.currentState!
                 .showSnackBar(SnackBar(content: Text("Could not register.")));
           }
         }
       },
       child: Container(
-          child: Text(
+          child: const Text(
             'Register Now',
             style: TextStyle(fontSize: 20, color: Colors.black),
           ),
-          width: MediaQuery.of(context).size.width,
-          padding: EdgeInsets.symmetric(vertical: 15),
+          width: MediaQuery.of(context).size.width / 1.8,
+          padding: const EdgeInsets.symmetric(vertical: 15),
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
+            borderRadius: const BorderRadius.all(Radius.circular(5)),
             boxShadow: <BoxShadow>[
               BoxShadow(
-                  color: Colors.grey.shade200,
-                  offset: Offset(2, 4),
+                  color: Colors.grey.shade300,
+                  offset: const Offset(2, 4),
                   blurRadius: 5,
                   spreadRadius: 2)
             ],
@@ -177,14 +184,14 @@ class _RegisterPageState extends State<RegisterPage> {
 
   Widget _loginAccountLabel() {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 20),
+      margin: const EdgeInsets.symmetric(vertical: 30),
       alignment: Alignment.bottomCenter,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           const Text(
             'Already have an account ?',
-            style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
           ),
           const SizedBox(
             width: 10,
@@ -209,7 +216,7 @@ class _RegisterPageState extends State<RegisterPage> {
       key: Key("userEmail"),
       controller: _userEmail,
       validator: (value) => (value!.isEmpty) ? "Please Enter Email" : null,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
           prefixIcon: Icon(Icons.email),
           labelText: "Email",
           border: OutlineInputBorder()),

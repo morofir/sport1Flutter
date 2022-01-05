@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
 import 'package:sport1/screens/login/login_screen.dart';
 import 'package:sport1/screens/more_screen.dart';
 import 'package:sport1/screens/onboarding_screen.dart';
@@ -22,6 +24,12 @@ class _TabsScreenState extends State<TabsScreen> {
 
   // List<Widget> tabPages = [ FUTURE USE FOR WIDGETS :
   // https://stackoverflow.com/questions/45235570/how-to-use-bottomnavigationbar-with-navigator
+
+  @override
+  void initState() {
+    super.initState();
+
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:sport1/main.dart';
 import 'package:sport1/screens/tab_screen.dart';
 
 class BouncingBtn extends StatefulWidget {
@@ -60,7 +61,7 @@ class _BouncingBtnState extends State<BouncingBtn> {
                           style: TextStyle(fontSize: 20)),
                       onPressed: () {
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => const TabsScreen()));
+                            builder: (context) => const AuthWrapper()));
                       }),
                   margin: const EdgeInsets.only(bottom: 10),
                   decoration: const BoxDecoration(
