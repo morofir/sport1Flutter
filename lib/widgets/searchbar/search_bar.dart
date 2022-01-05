@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-String searchAPI =
-    'https://sp1dv.maariv.co.il/wp-json/sport1/v1/search?s='; //+ ${searchText}
+
 
 class SearchBar extends StatefulWidget {
   const SearchBar({Key? key}) : super(key: key);
@@ -42,8 +41,6 @@ class _SearchBarState extends State<SearchBar> {
           ),
         ),
       ),
-
-      // Other Sliver Widgets
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sport1/providers/categories_provider.dart';
+import 'package:sport1/providers/search_provider.dart';
 import 'package:sport1/screens/home_screen.dart';
 import 'package:sport1/screens/inside_screen.dart';
 import 'package:sport1/screens/onboarding_screen.dart';
@@ -19,7 +20,6 @@ Future<void> main() async {
   SharedPreferences pref = await SharedPreferences.getInstance();
   initScreen = pref.getInt('initScreen');
   await pref.setInt('initScreen', 1); //1-true if loaded the application already
-  print(initScreen);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     //provider cleans old data automatically
     return MultiProvider(
-      //2 providers of auth,one for categories
+      //2 providers of auth,one for categories,one for search
       providers: [
         Provider<AuthService>(
           create: (_) => AuthService(FirebaseAuth.instance),
@@ -44,6 +44,7 @@ class MyApp extends StatelessWidget {
         ),
         ListenableProvider<CategoriesProvider>(
             create: (_) => CategoriesProvider()),
+        ListenableProvider<SearchProvider>(create: (_) => SearchProvider()),
       ],
       child: MaterialApp(
         title: 'MyShop',
@@ -72,10 +73,10 @@ class AuthWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final firebaseUser = context.watch<User?>();
-    print('user: ' + firebaseUser.toString());
+    // print('user: ' + firebaseUser.toString());
 
     if (firebaseUser != null) {
-      print('login success: ' + firebaseUser.toString());
+      // print('login success: ' + firebaseUser.toString());
       return TabsScreen();
       // Navigator.pushReplacement(
       //     context, MaterialPageRoute(builder: (context) => const TabsScreen()));
