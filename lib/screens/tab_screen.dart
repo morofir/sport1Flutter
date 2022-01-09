@@ -86,7 +86,7 @@ class _TabsScreenState extends State<TabsScreen> {
                   allowDrawingOutsideViewBox: true,
                   color: _selectedIndex == 2
                       ? const Color.fromRGBO(2, 247, 132, 1)
-                      : Colors.white),
+                      : Colors.grey),
               label: 'VOD',
             ),
             BottomNavigationBarItem(

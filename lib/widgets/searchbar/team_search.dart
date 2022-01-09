@@ -1,11 +1,11 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sport1/models/teams.dart';
 import 'package:sport1/providers/search_provider.dart';
 
 class TeamsSearch extends StatefulWidget {
-  const TeamsSearch({Key? key}) : super(key: key);
+  final String searchKey;
+  const TeamsSearch({required this.searchKey});
 
   @override
   State<TeamsSearch> createState() => _TeamsSearchState();
@@ -17,8 +17,8 @@ class _TeamsSearchState extends State<TeamsSearch> {
   @override
   void initState() {
     super.initState();
-    TeamsData =
-        Provider.of<SearchProvider>(context, listen: false).fetchTeams();
+    TeamsData = Provider.of<SearchProvider>(context, listen: false)
+        .fetchTeams(this.widget.searchKey);
   }
 
   @override
@@ -43,16 +43,30 @@ class _TeamsSearchState extends State<TeamsSearch> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(12.0),
-                              child: CircleAvatar(
-                                backgroundColor: Colors.white,
-                                radius: 35.0,
-                                child: Container(
-                                    height: 160,
-                                    width: 114,
-                                    child: Image.network(data![index].logo)),
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(40.0),
+                                ),
+                                elevation: 15,
+                                child: CircleAvatar(
+                                  radius: 32.5,
+                                  backgroundColor: Colors.white,
+                                  child: CircleAvatar(
+                                    backgroundColor: Colors.white,
+                                    radius: 25.0,
+                                    child: Image.network(data![index].logo),
+                                  ),
+                                ),
                               ),
                             ),
-                            Center(child: Text(data[index].name)),
+                            Center(
+                              child: Text(data[index].name,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    color: Color.fromRGBO(146, 146, 145, 1),
+                                  )),
+                            ),
                           ],
                         );
                       });

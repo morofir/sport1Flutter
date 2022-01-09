@@ -12,9 +12,9 @@ class MoreScreen extends StatelessWidget {
     return Scaffold(
         body: Column(
       children: [
-        Container(height: 600, child: SearchResult(),),
-        // Container(height: 60, child: SearchBar()),
-        // MoreList(),
+        // Container(height: 600, child: SearchResult(),),
+        Container(height: 60, child: SearchBar()),
+        MoreList(),
         Expanded(
           child: Align(
               alignment: FractionalOffset.bottomCenter,

@@ -1,11 +1,11 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sport1/models/posts.dart';
 import 'package:sport1/providers/search_provider.dart';
 
 class NewsSearch extends StatefulWidget {
-  const NewsSearch({Key? key}) : super(key: key);
+  const NewsSearch({required this.searchKey});
+  final String searchKey;
 
   @override
   State<NewsSearch> createState() => _NewsSearchState();
@@ -17,8 +17,8 @@ class _NewsSearchState extends State<NewsSearch> {
   @override
   void initState() {
     super.initState();
-    PostsData =
-        Provider.of<SearchProvider>(context, listen: false).fetchPosts();
+    PostsData = Provider.of<SearchProvider>(context, listen: false)
+        .fetchPosts(this.widget.searchKey);
   }
 
   @override
@@ -27,7 +27,6 @@ class _NewsSearchState extends State<NewsSearch> {
         'https://thumbs.dreamstime.com/z/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg';
     //vertical listview
     return SizedBox(
-      height: 380,
       child: Scaffold(
         body: Center(
           child: FutureBuilder<List<Posts>>(
@@ -42,7 +41,7 @@ class _NewsSearchState extends State<NewsSearch> {
                           textDirection: TextDirection.rtl,
                           child: Container(
                             margin: const EdgeInsets.all(5.0),
-                            height: 160,
+                            height: 140,
                             width: 106,
                             child: Card(
                               margin: const EdgeInsets.all(10),
@@ -55,12 +54,15 @@ class _NewsSearchState extends State<NewsSearch> {
                                 children: [
                                   Image.network(
                                       data![index].featuredImage ?? noImage,
-                                      fit: BoxFit.fitWidth),
+                                      fit: BoxFit.contain),
                                   Container(
                                       margin: const EdgeInsets.all(10),
                                       width: 100,
                                       height: 100,
                                       child: Text(data[index].title,
+                                          overflow: TextOverflow.fade,
+                                          maxLines: 5,
+                                          softWrap: true,
                                           style: const TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
