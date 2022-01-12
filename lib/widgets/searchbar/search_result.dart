@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sport1/widgets/searchbar/post_search.dart';
+import 'package:sport1/widgets/searchbar/search_bar.dart';
 import 'package:sport1/widgets/searchbar/team_search.dart';
 import 'package:sport1/widgets/header.dart';
 
@@ -9,11 +10,6 @@ class SearchResult extends StatefulWidget {
 
   @override
   _SearchResultState createState() => _SearchResultState();
-}
-
-@override
-void initState() {
-  // super.initState();
 }
 
 class _SearchResultState extends State<SearchResult> {
@@ -30,7 +26,7 @@ class _SearchResultState extends State<SearchResult> {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Container(
-            margin: const EdgeInsets.only(right: 15, top: 20, bottom: 10),
+            margin: const EdgeInsets.only(right: 15, top: 20, bottom: 2),
             child: const Text('קבוצות וליגות',
                 style: TextStyle(
                   fontSize: 16,
@@ -42,7 +38,7 @@ class _SearchResultState extends State<SearchResult> {
             height: 10,
           ),
           Container(
-              margin: const EdgeInsets.only(right: 15, top: 20, bottom: 10),
+              margin: const EdgeInsets.only(right: 15, top: 20, bottom: 2),
               child: const Text(
                 'חדשות ותקצירים',
                 style: TextStyle(

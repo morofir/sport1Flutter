@@ -1,11 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
-
 import 'package:sport1/services/auth_service.dart';
-
 import 'register_screen.dart';
-// import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -213,8 +209,8 @@ class _LoginScreenState extends State<LoginScreen> {
             print('login');
           } catch (e) {
             setState(() => isLoading = false);
-            _pageKey.currentState!
-                .showSnackBar(SnackBar(content: Text("Could not login.")));
+            _pageKey.currentState!.showSnackBar(
+                const SnackBar(content: Text("Could not login.")));
           }
         }
       },

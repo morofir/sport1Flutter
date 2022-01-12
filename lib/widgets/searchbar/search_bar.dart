@@ -55,17 +55,21 @@ class _SearchBarState extends State<SearchBar> {
                 controller: _controller,
                 textAlign: TextAlign.justify,
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                      borderSide:
-                          const BorderSide(width: 1, color: Colors.white)),
-                  hintStyle: TextStyle(
-                      color: Colors.grey.shade500,
-                      fontSize: 18,
-                      fontFamily: "NarkissBlock"),
-                  hintText: 'חפש קבוצות, ליגות, שחקנים...',
-                  prefixIcon: const Icon(Icons.search),
-                ),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                        borderSide:
+                            const BorderSide(width: 1, color: Colors.white)),
+                    hintStyle: TextStyle(
+                        color: Colors.grey.shade500,
+                        fontSize: 18,
+                        fontFamily: "NarkissBlock"),
+                    hintText: 'חפש קבוצות, ליגות, שחקנים...',
+                    prefixIcon: const Icon(Icons.search),
+                    suffixIcon: IconButton(
+                      icon: const Icon(Icons.cancel,
+                          color: Color.fromRGBO(216, 216, 216, 1)),
+                      onPressed: _controller.clear,
+                    )),
               ),
             ),
           ),

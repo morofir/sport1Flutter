@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sport1/widgets/more_list.dart';
 import 'package:sport1/widgets/searchbar/search_bar.dart';
-import 'package:sport1/widgets/searchbar/search_result.dart';
 
 class MoreScreen extends StatelessWidget {
   const MoreScreen({Key? key}) : super(key: key);
@@ -12,7 +11,6 @@ class MoreScreen extends StatelessWidget {
     return Scaffold(
         body: Column(
       children: [
-        // Container(height: 600, child: SearchResult(),),
         Container(height: 60, child: SearchBar()),
         MoreList(),
         Expanded(

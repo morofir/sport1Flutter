@@ -3,8 +3,6 @@ import 'package:provider/src/provider.dart';
 import 'package:sport1/screens/inside_screen.dart';
 import 'package:sport1/services/auth_service.dart';
 
-import 'login/login_screen.dart';
-
 class VodScreen extends StatelessWidget {
   const VodScreen({Key? key}) : super(key: key);
   static const routeName = '/vod';

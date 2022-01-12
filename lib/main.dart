@@ -77,9 +77,9 @@ class AuthWrapper extends StatelessWidget {
 
     if (firebaseUser != null) {
       // print('login success: ' + firebaseUser.toString());
-      return TabsScreen();
-      // Navigator.pushReplacement(
-      //     context, MaterialPageRoute(builder: (context) => const TabsScreen()));
+      
+      return const TabsScreen();
+
     } else {
       print('logged out');
       return LoginScreen();
