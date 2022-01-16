@@ -24,12 +24,6 @@ class _MoreListState extends State<MoreList> {
     }
   }
 
-  void printCategories() {
-    for (Categories item in myList) {
-      print(item.title);
-    }
-  }
-
   @override
   void initState() {
     super.initState();
@@ -71,9 +65,11 @@ class _MoreListState extends State<MoreList> {
                               children: <Widget>[
                                 //if child exists generate list tile
                                 ...?data[index].children?.map((e) => Container(
-                                      decoration: const BoxDecoration(
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: Colors.black, width: 0.03),
                                           color:
-                                              Color.fromRGBO(242, 242, 242, 1)),
+                                              Color.fromRGBO(240, 240, 240, 1)),
                                       child: ListTile(title: Text(e.title)),
                                     )),
                               ],

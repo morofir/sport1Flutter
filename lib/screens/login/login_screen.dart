@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
+import 'package:sport1/screens/tab_screen.dart';
 import 'package:sport1/services/auth_service.dart';
 import 'register_screen.dart';
 
@@ -203,9 +204,16 @@ class _LoginScreenState extends State<LoginScreen> {
             isLoading = true;
           });
           try {
-            context.read<AuthService>().signIn(
-                email: _userEmail.text.trim(),
-                password: _userPassword.text.trim());
+            context
+                .read<AuthService>()
+                .signIn(
+                    email: _userEmail.text.trim(),
+                    password: _userPassword.text.trim())
+                .then((_) => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const TabsScreen())));
+
             print('login');
           } catch (e) {
             setState(() => isLoading = false);

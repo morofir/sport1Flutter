@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
 import 'package:sport1/screens/inside_screen.dart';
+import 'package:sport1/screens/login/login_screen.dart';
 import 'package:sport1/services/auth_service.dart';
 
 class VodScreen extends StatelessWidget {
@@ -25,7 +26,15 @@ class VodScreen extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                context.read<AuthService>().signOut();
+                try {
+                  context.read<AuthService>().signOut().then((_) =>
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LoginScreen())));
+                } catch (e) {
+                  print(e.toString());
+                }
               },
               child: const Text('Log Out'),
             )
