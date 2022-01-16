@@ -70,8 +70,12 @@ class _MoreListState extends State<MoreList> {
                               title: Text(data![index].title),
                               children: <Widget>[
                                 //if child exists generate list tile
-                                ...?data[index].children?.map(
-                                    (e) => ListTile(title: Text(e.title))),
+                                ...?data[index].children?.map((e) => Container(
+                                      decoration: const BoxDecoration(
+                                          color:
+                                              Color.fromRGBO(242, 242, 242, 1)),
+                                      child: ListTile(title: Text(e.title)),
+                                    )),
                               ],
                             ),
                           );

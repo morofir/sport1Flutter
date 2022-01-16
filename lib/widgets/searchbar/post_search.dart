@@ -51,36 +51,36 @@ class _NewsSearchState extends State<NewsSearch> {
                         itemBuilder: (BuildContext context, int index) {
                           return Directionality(
                             textDirection: TextDirection.rtl,
-                            child: Container(
-                              margin: const EdgeInsets.all(4.0),
-                              height: 140,
-                              width: 106,
-                              child: Card(
-                                margin: const EdgeInsets.all(8),
-                                elevation: 8,
-                                shape: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                        color: Colors.grey.shade100, width: 1)),
-                                child: Row(
-                                  children: [
-                                    Image.network(
+                            child: Card(
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                              margin: const EdgeInsets.all(8),
+                              elevation: 8,
+                              shape: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.grey.shade100, width: 1)),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width: 180,
+                                    height: 118,
+                                    child: Image.network(
                                         data![index].featuredImage ?? noImage,
-                                        fit: BoxFit.contain),
-                                    Container(
-                                        margin: const EdgeInsets.all(10),
-                                        width: 100,
-                                        height: 100,
-                                        child: Text(data[index].title,
-                                            overflow: TextOverflow.fade,
-                                            maxLines: 5,
-                                            softWrap: true,
-                                            style: const TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                            ))),
-                                  ],
-                                ),
+                                        fit: BoxFit.fill),
+                                  ),
+                                  Container(
+                                      margin: const EdgeInsets.all(10),
+                                      width: 150,
+                                      height: 100,
+                                      child: Text(data[index].title,
+                                          overflow: TextOverflow.fade,
+                                          maxLines: 7,
+                                          softWrap: true,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ))),
+                                ],
                               ),
                             ),
                           );

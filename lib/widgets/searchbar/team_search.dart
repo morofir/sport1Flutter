@@ -42,11 +42,12 @@ class _TeamsSearchState extends State<TeamsSearch> {
                     );
                   } else {
                     return ListView.builder(
+                        reverse: true,
                         scrollDirection: Axis.horizontal,
                         itemCount: data!.length,
                         itemBuilder: (BuildContext context, int index) {
                           return Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Padding(
                                 padding: const EdgeInsets.all(12.0),
@@ -61,15 +62,16 @@ class _TeamsSearchState extends State<TeamsSearch> {
                                     child: CircleAvatar(
                                       backgroundColor: Colors.white,
                                       radius: 25.0,
-                                      child: Image.network(data[index].logo),
+                                      child: Image.network(
+                                        data[index].logo,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                               Center(
                                 child: Text(data[index].name,
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
+                                    softWrap: true,
                                     style: const TextStyle(
                                       color: Color.fromRGBO(146, 146, 145, 1),
                                     )),

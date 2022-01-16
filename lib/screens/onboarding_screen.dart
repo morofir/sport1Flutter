@@ -11,7 +11,7 @@ class OnbordingScreen extends StatelessWidget {
   final List<OnbordingData> list = [
     OnbordingData(
       imagePath: "assets/images/caro1.png",
-      title: "האפליקציה החדשה של ספורט!",
+      title: "1האפליקציה החדשה של ספורט!",
       desc: "ברוך הבא לאפליקציית הספורט הראשונה בישראל שמותאמת במיוחד עבורך",
     ),
     OnbordingData(
